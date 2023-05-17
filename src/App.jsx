@@ -1,14 +1,26 @@
-import { useSelector } from 'react-redux';
-// import { decrement, increment, islogged } from './action';
+import React from 'react';
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from 'react-router-dom';
+import DashBoard from './component/DashBoard';
+import Cart from './component/Cart';
+import RootLayout from './component/RootLayout';
 
-function App() {
-  // const count = useSelector((state) => state.count);
+export default function App() {
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path="/" element={<RootLayout />}>
+        <Route index element={<DashBoard />}></Route>
+        <Route path="/Cart" element={<Cart />}></Route>
+      </Route>
+    )
+  );
   return (
-    <div className="App">
-      App
-      {/* <h1>Counter : {count}</h1> */}
+    <div>
+      <RouterProvider router={router} />
     </div>
   );
 }
-
-export default App;
