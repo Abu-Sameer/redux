@@ -1,9 +1,11 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 export default function NavBar() {
+  const adding = useSelector((state) => state.cart);
   return (
-    <nav className="navbar navbar-expand-lg bg-body-secondary">
+    <nav className="navbar navbar-expand-lg bg-body-secondary position-sticky">
       <div className="container-fluid">
         <a className="navbar-brand" href="#/">
           Redux Toolkits
@@ -29,7 +31,7 @@ export default function NavBar() {
           </ul>
           <div className="navBar-collapse justify-content-end">
             <div>
-              <Link to="/Cart">My Cart 0</Link>
+              <Link to="/Cart">My Cart {adding.length}</Link>
             </div>
           </div>
         </div>

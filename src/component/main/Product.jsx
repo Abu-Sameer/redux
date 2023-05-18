@@ -1,23 +1,34 @@
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { remove } from '../store/CartSlice';
+import { add } from '../../store/CartSlice';
+import { getProduct } from '../../store/productSlice';
 
-export default function Cart() {
-  const added = useSelector((state) => state.cart);
+export default function Product() {
+  const [isLoding, setIsLoding] = useState(false);
   const dispatch = useDispatch();
-  const emptyCart = added.length < 1;
+  const { data: products } = useSelector((state) => state.products);
+  // const { data } = useSelector((state) => state.product);
 
-  const removeItem = (id) => {
-    dispatch(remove(id));
+  useEffect(() => {
+    setIsLoding(true);
+    dispatch(getProduct());
+    setIsLoding(false);
+  }, [dispatch]);
+
+  const AddToCart = (product) => {
+    dispatch(add(product));
   };
+
   return (
-    <div className="container-fluid">
-      {emptyCart ? (
-        <h3>Your cart is empty...</h3>
+    <div>
+      <h1>Product Dashboard</h1>
+      {isLoding ? (
+        <h3>Please wait...</h3>
       ) : (
-        <div className="row mt-3">
-          {added.map((prod) => {
+        <div className="row">
+          {products.map((prod) => {
             return (
-              <div className="col mb-5" key={prod.id}>
+              <div className="col mb-5  " key={prod.id}>
                 <div className="card h-100" style={{ width: '18rem' }}>
                   <div className="text-center">
                     <img
@@ -35,10 +46,10 @@ export default function Cart() {
                   </div>
                   <div className="card-footer">
                     <button
-                      onClick={() => removeItem(prod.id)}
-                      className="btn btn-danger"
+                      onClick={() => AddToCart(prod)}
+                      className="btn btn-primary"
                     >
-                      Remove from cart
+                      Add to cart
                     </button>
                   </div>
                 </div>
