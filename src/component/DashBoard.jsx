@@ -3,7 +3,7 @@ import Product from './Product';
 
 export default function DashBoard() {
   return (
-    <div>
+    <div className="container-fluid margin">
       <Product />
     </div>
   );

@@ -1,12 +1,12 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import NavBar from './main/NavBar';
+import NavBar from './NavBar';
 import { Provider } from 'react-redux';
 import store from '../store/store';
 
 export default function RootLayout() {
   return (
-    <div>
+    <div className="position-absolute">
       <Provider store={store}>
         <NavBar />
         <main>
