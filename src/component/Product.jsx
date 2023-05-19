@@ -40,6 +40,7 @@ export default function Product() {
           return (
             <div className="col mb-4" key={product.id}>
               <div className="card h-100" style={{ width: '18rem' }}>
+                <h4>{product.category}</h4>
                 <div className="text-center">
                   <img
                     src={product.image}
