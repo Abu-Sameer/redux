@@ -5,9 +5,9 @@ import {
   Route,
   RouterProvider,
 } from 'react-router-dom';
-import DashBoard from './component/DashBoard';
-import Cart from './component/Cart';
-import RootLayout from './component/RootLayout';
+import DashBoard from '../Reall/component/DashBoard';
+import Cart from '../Reall/component/Cart';
+import RootLayout from '../Reall/component/RootLayout';
 
 export default function App() {
   const router = createBrowserRouter(
